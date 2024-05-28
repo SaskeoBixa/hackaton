@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aqualert - Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .navbar {
+            width: 100%;
+            background-color: rgb(47, 174, 216);
+            padding: 0.3em;
+            box-shadow: 0 4px 2px -2px rgb(40, 108, 255);
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        .navbar img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        .map-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 60px; /* Ajuste para evitar que o conteúdo fique escondido atrás da navbar */
+            margin-bottom: 60px; /* Ajuste para evitar que o conteúdo fique escondido atrás da navbar inferior */
+        }
+        #map {
+            width: 80%;
+            height: 70%;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+        }
+        .bottom-navbar {
+            width: 100%;
+            background-color:  #1a414e;
+            padding: 0.7em;
+            box-shadow: 0 -4px 2px -2px gray;
+            display: flex;
+            gap:70px;
+            justify-content: center;
+            align-items: center;
+            color: rgb(255, 255, 255);
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        .bottom-navbar img {
+            width: 50px;
+            height: 50px; 
+            cursor: pointer;
+            filter: brightness(0) invert(1);
+            margin: 0 10px;
+            transition: transform 0.3s ease;
+        }
+        .bottom-navbar img:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <img src="logo.png" alt="Logo Aqualert">
+        <span>Aqualert</span>
+    </div>
+    <div class="map-container">
+        <div id="map"></div>
+    </div>
+    <div class="bottom-navbar">
+        <img src="map.png" alt="Ver Mapa" onclick="window.location.href='mapa.html'">
+        <img src="clima.png" alt="Ver Clima" onclick="window.location.href='clima.html'">
+    </div>
+
+    <!-- Script da API do Google Maps -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+    <script>
+        function initMap() {
+            var mapOptions = {
+                zoom: 8,
+                center: new google.maps.LatLng(-34.397, 150.644), // Coordenadas iniciais do mapa
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        }
+    </script>
+</body>
+</html>
